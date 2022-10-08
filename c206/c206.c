@@ -80,7 +80,6 @@ void DLL_Error() {
  */
 void DLL_Init( DLList *list ) 
 {
-	
 	list->firstElement = NULL; 
 	list->activeElement = NULL; //inicializacia zoznamu aby sa predislo nedefinovaným hodnotám a nedefinovanemu chovaniu
 	list->lastElement = NULL; 
