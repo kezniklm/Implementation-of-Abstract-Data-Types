@@ -74,7 +74,7 @@ void List_Error() {
  */
 void List_Init( List *list ) 
 {
-	list->firstElement = NULL;
+	list->firstElement = NULL;//inicializacia zoznamu aby sa predislo nedefinovaným hodnotám a nedefinovanemu chovaniu
 	list->activeElement = NULL;
 }
 /**
@@ -117,9 +117,20 @@ void List_InsertFirst( List *list, int data )
 	}
 	else 
 	{
-		new_element->nextElement = list->firstElement;
-		list->firstElement = new_element;
-		new_element->data = data;
+		//Pokial v zozname su nejake prvky, novo vlozeny prvok sa stane prvym prvkom 
+		if(list->firstElement != NULL)
+		{
+			new_element->nextElement = list->firstElement;
+			list->firstElement = new_element;
+			new_element->data = data;
+		}
+		//Pokial v zozname nie je ziadny prvok -> zoznam je prazdny a vlozeny prvok je prvym prvkom
+		else 
+		{
+			list->firstElement = new_element;
+			new_element->nextElement = NULL;
+			new_element->data = data;
+		}
 	}
 }
 
@@ -165,6 +176,7 @@ void List_DeleteFirst( List *list )
 {
 	if(list->firstElement != NULL)
 	{
+		//Pokiaľ bol prvý prvok aktivny, aktivita sa stráca
 		if (list->firstElement == list->activeElement)
 		{
 			list->activeElement = NULL;
@@ -192,7 +204,6 @@ void List_DeleteAfter( List *list )
 			ListElementPtr temp_element = active_follower->nextElement;
 			free(active_follower);
 			list->activeElement->nextElement = temp_element;
-			
 		}
 	}
 }
