@@ -304,7 +304,9 @@ int List_IsActive( List *list )
 	if(list->activeElement != NULL)
 	{
 		if(list->firstElement != NULL)
-		return TRUE;
+		{
+			return TRUE;
+		}
 	}
 	
 	return 0;
