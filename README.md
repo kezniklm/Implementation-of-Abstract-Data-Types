@@ -1,2 +1,2 @@
 # IAL_project1
-### Evaluation: 15/15 points
+### Evaluation: 10/10 points
